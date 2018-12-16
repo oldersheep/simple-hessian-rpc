@@ -20,7 +20,7 @@
 
 ```xml
 <dependency>
-	<groupId>com.caucho</groupId>
+    <groupId>com.caucho</groupId>
     <artifactId>hessian</artifactId>
     <version>4.0.38</version>
 </dependency>
@@ -36,8 +36,8 @@
 <bean id="heroService" class="com.xxx.service.bo.HeroServiceImpl"></bean>
 
 <bean name="/heroService" class="org.springframework.remoting.caucho.HessianServiceExporter">
-	<property name="service" ref="heroService"></property>
-	<property name="serviceInterface" value="com.xxx.api.HeroService"></property>
+    <property name="service" ref="heroService"></property>
+    <property name="serviceInterface" value="com.xxx.api.HeroService"></property>
 </bean>
 
 ```
@@ -52,10 +52,10 @@ private HeroService heroService;
 
 @Bean(name = "/heroService")
 public HessianServiceExporter accountService() {
-	HessianServiceExporter exporter = new HessianServiceExporter();
-	exporter.setService(heroService);
-	exporter.setServiceInterface(HeroService.class);
-	return exporter;
+    HessianServiceExporter exporter = new HessianServiceExporter();
+    exporter.setService(heroService);
+    exporter.setServiceInterface(HeroService.class);
+    return exporter;
 }
 ```
 
@@ -136,9 +136,9 @@ public HessianProxyFactoryBean helloClient() {
 
 @RequestMapping("/")
 public HeroModel index(){
-	HeroModel nevermore = heroService.getOneByName("Nevermore");
-	System.out.println(nevermore);
-	return nevermore;
+    HeroModel nevermore = heroService.getOneByName("Nevermore");
+    System.out.println(nevermore);
+    return nevermore;
 }
 ```
 
@@ -152,7 +152,7 @@ public HeroModel index(){
 
 ### 思考
 
-**根据服务自动发布的实现，想了一下客户端是否可用采用类似的方式去自动化呢？**
+**根据服务自动发布的实现，想一下客户端是否可用采用类似的方式去自动化呢？**
 
 ​	个人觉得是不可以的，当然，也是经过验证了的，因为在项目启动的时候，注入发布的接口时，如果没有去注入`HessianProxyFactoryBean`，则spring会发现，发布的接口没有实现类，无法去注入，而这里呢，好像又产生了循环依赖，所以呢，需要解决这样的问题，以当前项目为例，在spring启动的时候，先去查找需要serviceUrl，然后让`HessianProxyFactoryBean` 进行注入，而后再在使用到`HeroService`地方注入。
 
