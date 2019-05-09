@@ -2,47 +2,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.1.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
+
     <groupId>com.xxx</groupId>
     <artifactId>api</artifactId>
     <version>1.0.0</version>
     <name>api</name>
+    <packaging>jar</packaging>
     <description>Demo project for Spring Boot</description>
 
     <properties>
         <java.version>1.8</java.version>
     </properties>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <version>2.5.2</version>
-                <executions>
-                    <execution>
-                        <id>linux</id>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <!--<phase>install</phase>
-                        <configuration>
-                            <groupId>com.jm.samples</groupId>
-                            <artifactId>samples</artifactId>
-                            <version>${project.version}</version>
-                            <classifier>linux</classifier>
-                            <packaging>jar</packaging>
-                            <file>${project.build.directory}/${project.build.finalName}-linux.jar</file>
-                        </configuration>-->
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
